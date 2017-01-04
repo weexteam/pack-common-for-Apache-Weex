@@ -34,6 +34,9 @@ function CordovaError(message, code, context) {
     Error.captureStackTrace(this, this.constructor);
    // this.name = this.constructor.name;
     this.name = 'weexpack error';
+    // WEEX_HOOK_START
+    message = message.replace(/Cordova/ig,"weexpack")
+    // WEEX_HOOK_END
     this.message = message;
     this.code = code || CordovaError.UNKNOWN_ERROR;
     this.context = context;
