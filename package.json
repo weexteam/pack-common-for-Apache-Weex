@@ -1,6 +1,6 @@
 {
   "author": "weex team",
-  "name": "cordova-common",
+  "name": "weexpack-common",
   "description": "weexpack tools and platforms shared routines",
   "license": "Apache-2.0",
   "version": "0.1.0",
