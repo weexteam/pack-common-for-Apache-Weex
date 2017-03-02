@@ -164,11 +164,18 @@ function resolveConfigFilePath(project_dir, platform, file) {
     var filepath = path.join(project_dir, file);
     var matches;
 
+
     if (file.indexOf('*') > -1 && file.indexOf('plist') > -1) {
-        project_dir = path.join(project_dir, '..');
+        project_dir = path.join(project_dir);
         // handle wildcards in targets using glob.
         matches = modules.glob.sync(path.join(project_dir, '**', file));
         if (matches.length) filepath = matches[0];
+        else {
+            project_dir = path.join(project_dir, '..');
+            // handle wildcards in targets using glob.
+            matches = modules.glob.sync(path.join(project_dir, '**', file));
+            if (matches.length) filepath = matches[0];
+        }
 
         // [CB-5989] multiple Info.plist files may exist. default to $PROJECT_NAME-Info.plist
         if(matches.length > 1 && file.indexOf('-Info.plist')>-1){
