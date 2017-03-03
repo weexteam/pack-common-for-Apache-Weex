@@ -188,6 +188,8 @@ function resolveConfigFilePath(project_dir, platform, file) {
             }
         }
         return filepath;
+    }else if (platform === 'ios' && (file != 'config.xml' || file != 'WeexpluginConfig.xml')){
+        return filepath = path.join(project_dir, getIOSProjectname(project_dir), file);
     }
 
     // special-case config.xml target that is just "config.xml". This should be resolved to the real location of the file.
